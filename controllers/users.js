@@ -5,7 +5,9 @@ const { handleSQLError } = require('../sql/error')
 const getAllUsers = (req, res) => {
   // SELECT ALL USERS
   pool.query(
-    "SELECT * FROM users JOIN usersContact ON users.id = usersContact.user_id JOIN usersAddress ON users.id = usersAddress.user_id", 
+    `SELECT * FROM users 
+    JOIN usersContact ON users.id = usersContact.user_id 
+    JOIN usersAddress ON users.id = usersAddress.user_id`, 
     
     (err, rows) => {
     if (err) return handleSQLError(res, err)
