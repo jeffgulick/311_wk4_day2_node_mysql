@@ -10,6 +10,7 @@ class Connection {
         user: 'root',
         password: 'hello',
         database: 'admin',
+        multipleStatements: 'true'
       })
 
       return this.pool
