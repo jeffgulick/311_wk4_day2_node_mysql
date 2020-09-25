@@ -7,7 +7,7 @@ const getAllUsers = (req, res) => {
   pool.query(
     `SELECT * FROM users 
     JOIN usersContact ON users.id = usersContact.user_id 
-    JOIN usersAddress ON users.id = usersAddress.user_id`, 
+    JOIN usersAddress ON users.id = usersAddress.user_id ORDER BY users.id`, 
     
     (err, rows) => {
     if (err) return handleSQLError(res, err)
@@ -17,7 +17,7 @@ const getAllUsers = (req, res) => {
 
 const getUserById = (req, res) => {
   // SELECT USERS WHERE ID = <REQ PARAMS ID>
-  let sql = "SELECT ??, ??, ?? FROM ?? WHERE ??  = ?"
+  let sql = `SELECT ??, ??, ?? FROM ?? WHERE ??  = ?`
   const replacements = ['id', 'first_name', 'last_name', 'users', 'id', req.params['id']]
   // WHAT GOES IN THE BRACKETS
   sql = mysql.format(sql, replacements)
